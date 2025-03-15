@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .counter {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .count {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        .increment { background-color: #28a745; color: white; }
+        .decrement { background-color: #dc3545; color: white; }
+        .reset { background-color: #ffc107; color: black; }
+    </style>
+</head>
+<body>
+    <div class="counter">
+        <h2>Counter</h2>
+        <div class="count" id="count">0</div>
+        <button class="decrement" onclick="decrement()">-</button>
+        <button class="reset" onclick="reset()">Reset</button>
+        <button class="increment" onclick="increment()">+</button>
+    </div>
+
+    <script>
+        let count = localStorage.getItem("counter") ? parseInt(localStorage.getItem("counter")) : 0;
+        const countElement = document.getElementById("count");
+        countElement.textContent = count;
+
+        function updateStorage() {
+            localStorage.setItem("counter", count);
+        }
+
+        function increment() {
+            count++;
+            countElement.textContent = count;
+            updateStorage();
+        }
+
+        function decrement() {
+            count--;
+            countElement.textContent = count;
+            updateStorage();
+        }
+
+        function reset() {
+            count = 0;
+            countElement.textContent = count;
+            updateStorage();
+        }
+    </script>
+</body>
+</html>
